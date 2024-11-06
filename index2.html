@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style\index.css">
+    <title>Venda de Ingressos</title>
+    <style>
+       body {
+            background-image: url('https://th.bing.com/th/id/R.d513b2351cc4e8e0826163edc6d148e2?rik=GvPDejsbSuZAUw&pid=ImgRaw&r=0');
+            background-size: cover;  /* Faz com que a imagem cubra toda a tela */
+            background-attachment: fixed;  /* Faz com que a imagem não role com a página */
+            animation: moveBackground 10s infinite linear;  /* Define a animação */
+
+            background-image: url('https://th.bing.com/th/id/R.d513b2351cc4e8e0826163edc6d148e2?rik=GvPDejsbSuZAUw&pid=ImgRaw&r=0');
+            background-color: #f4f4f9;
+            background-repeat: no-repeat;
+            background-size: cover;
+            font-family: Arial, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            
+        }
+        @keyframes moveBackground {
+            0% {
+                background-position: 0 0;  /* Posição inicial da imagem */
+            }
+            100% {
+                background-position: 100% 100%;  /* Posição final da imagem */
+            }
+        }
+        .container {
+            background-color: rgba(174, 231, 245, 0.5);
+            padding: 20px;
+            max-width: 700px;
+            width: 100%;
+            box-shadow: 0 4px 8px rgba(6, 106, 238, 0.87);
+            border-radius: 50px;
+            text-align: center;
+        }
+        .container h1 {
+            color: #0e0d0d;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            text-align: left;
+        }
+        input, select, button {
+            width: 95%;
+            padding: 9px;
+            margin-top: 5px;
+            border-radius: 50px;
+            border: 1px solid #2595e66e;
+        }
+        button {
+            background-color: #0962e7ec;
+            color: rgba(27, 27, 27);
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+        }
+        button:hover {
+            background-color: #0953f3;
+        }
+        .payment-options, .card-details {
+            display: none;
+        }
+        
+        .cartao input[type="checkbox"] {
+            -webkit-appearance: none; /* Remove a aparência padrão do checkbox */
+            appearance: none; /* Remove a aparência padrão do checkbox */
+            width: 20px; /* Largura do checkbox */
+            height: 20px; /* Altura do checkbox */
+            border: 2px solid #0a0a0a; /* Borda do checkbox */
+            border-radius: 50%; /* Faz o checkbox redondo */
+            outline: none; /* Remove o contorno padrão */
+            cursor: pointer; /* Altera o cursor ao passar sobre o checkbox */
+        }
+        .cartao {
+            display: flex;
+            align-items: center; /* Alinha verticalmente os itens */
+            gap: 10px; /* Espaço entre os elementos */
+        }
+
+        .cartao input[type="checkbox"]:checked {
+            background-color: #0c0c0c; /* Cor de fundo quando marcado */
+            border: 2px solid #080808; /* Mantém a borda quando marcado */
+        }
+
+
+        
+
+    </style>
+    <script>
+        function showPaymentDetails() {
+            const paymentOption = document.getElementById("pagamento").value;
+            document.querySelector(".payment-options").style.display = "none";
+            document.querySelector(".card-details").style.display = "none";
+            if (paymentOption === "cartao") {
+                document.querySelector(".card-details").style.display = "block";
+            } else if (paymentOption === "pix" || paymentOption === "boleto") {
+                document.querySelector(".payment-options").style.display = "block";
+            }
+        }
+    </script>
+</head>
+<body>
+
+    <div class="container">
+        <h1><b>Compre seu Ingresso</b></h1>
+        <form action="/comprar" method="POST">
+            <label for="nome"><b>Nome Completo</b></label>
+            <input type="text" id="nome" name="nome" required>
+
+            <label for="email"><b>Email</b></label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="evento"><b>Selecione o Evento</b></label>
+            <select id="evento" name="evento" required>
+                <option value="">Selecione</option>
+                <option value="show"><b>Show</b></option>
+                <option value="teatro"><b>Teatro</b></option>
+                <option value="cinema"><b>Cinema</b></option>
+            </select>
+
+            <label for="quantidade"><b>Quantidade de Ingressos</b></label>
+            <input type="number" id="quantidade" name="quantidade" min="1" max="10" required>
+
+            <label for="pagamento"><b>Forma de Pagamento</b></label>
+            <select id="pagamento" name="pagamento" onchange="showPaymentDetails()" required>
+                <option value="">Selecione</option>
+                <option value="cartao"><b>Cartão de Crédito/Débito</b></option>
+                <option value="pix"><b>Pix</b></option>
+                <option value="boleto"><b>Boleto Bancário</b></option>
+            </select>
+
+            <!-- Detalhes do Cartão de Crédito/Débito -->
+            <div class="card-details">
+                <label for="numero-cartao">Número do Cartão</label>
+                <input type="text" id="numero-cartao" name="numero-cartao" maxlength="16" placeholder="xxxx xxxx xxxx xxxx">
+                
+                <label for="nome-cartao">Nome no Cartão</label>
+                <input type="text" id="nome-cartao" name="nome-cartao" placeholder="Nome como no Cartão">
+                
+                <label for="validade-cartao">Data de Validade</label>
+                <input type="month" id="validade-cartao" name="validade-cartao">
+                
+                <label for="cvv">CVV</label>
+                <input type="text" id="cvv" name="cvv" maxlength="3" placeholder="123">
+
+                    <div class="cartao">
+                        <label for="debi">Débito</label> <input type="checkbox" id="debi">
+                        <br>
+                        <label for="credito">Credito</label> <input type="checkbox" id="credito">
+                        
+                    </div>
+            </div>
+
+            <!-- Detalhes para Pix ou Boleto -->
+            <div class="payment-options">
+                <p>Chave Pix 51 9 9999-9999  <span id="tipo-pagamento"></span>.</p>
+            
+            </div>
+
+            <strong>  <button type="submit"><strong>Comprar Ingresso</strong></button>
+        </strong> 
+        </form>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,71 @@
+body {
+    background-image: url('https://th.bing.com/th/id/R.d513b2351cc4e8e0826163edc6d148e2?rik=GvPDejsbSuZAUw&pid=ImgRaw&r=0');
+    background-color: #f4f4f9;
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-family: Arial, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+}
+.container {
+    background-color: rgba(174, 231, 245, 0.5);
+    padding: 20px;
+    max-width: 700px;
+    width: 100%;
+    box-shadow: 0 4px 8px rgba(6, 106, 238, 0.87);
+    border-radius: 50px;
+    text-align: center;
+}
+.container h1 {
+    color: #0e0d0d;
+}
+label {
+    display: block;
+    margin: 10px 0 5px;
+    text-align: left;
+}
+input, select, button {
+    width: 95%;
+    padding: 9px;
+    margin-top: 5px;
+    border-radius: 50px;
+    border: 1px solid #2595e66e;
+}
+button {
+    background-color: #0962e7ec;
+    color: rgba(27, 27, 27);
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+}
+button:hover {
+    background-color: #0953f3;
+}
+.payment-options, .card-details {
+    display: none;
+}
+ 
+
+.cartao input[type="checkbox"] {
+    -webkit-appearance: none; /* Remove a aparência padrão do checkbox */
+    appearance: none; /* Remove a aparência padrão do checkbox */
+    width: 20px; /* Largura do checkbox */
+    height: 20px; /* Altura do checkbox */
+    border: 2px solid #0a0a0a; /* Borda do checkbox */
+    border-radius: 50%; /* Faz o checkbox redondo */
+    outline: none; /* Remove o contorno padrão */
+    cursor: pointer; /* Altera o cursor ao passar sobre o checkbox */
+}
+.cartao {
+    display: flex;
+    align-items: center; /* Alinha verticalmente os itens */
+    gap: 10px; /* Espaço entre os elementos */
+}
+
+.cartao input[type="checkbox"]:checked {
+    background-color: #0c0c0c; /* Cor de fundo quando marcado */
+    border: 2px solid #080808; /* Mantém a borda quando marcado */
+}
